@@ -1,6 +1,6 @@
-from birthday import Birthday
-from name import Name
-from phone import Phone
+from models.birthday import Birthday
+from models.name import Name
+from models.phone import Phone
 from utils.is_valid_phone import is_valid_phone
 
 class Record:

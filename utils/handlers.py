@@ -1,6 +1,6 @@
-from adressbook import AddressBook
+from models.adressbook import AddressBook
 from decorators.input_error import input_error
-from record import Record
+from models.record import Record
 
 @input_error
 def add_contact(args, contacts: AddressBook):

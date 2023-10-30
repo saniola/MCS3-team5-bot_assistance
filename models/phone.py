@@ -1,4 +1,4 @@
-from field import Field
+from models.field import Field
 from utils.is_valid_phone import is_valid_phone
 
 class Phone(Field):

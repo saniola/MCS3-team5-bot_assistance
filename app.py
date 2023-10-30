@@ -1,4 +1,4 @@
-from adressbook import AddressBook
+from models.adressbook import AddressBook
 from utils.handlers import add_contact, change_contact, show_phone, show_all, add_birthday, show_birthday, birthdays
 
 def parse_input(user_input):
