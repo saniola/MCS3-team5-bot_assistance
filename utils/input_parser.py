@@ -1,7 +1,7 @@
 from shlex import shlex
 
 
-def parse_input(user_input) -> tuple[str, list(str)]:
+def parse_input(user_input) -> tuple[str, list()]:
     """
     The function parses user input and returns 'command' value
     and all 'arguments'
