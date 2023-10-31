@@ -1,6 +1,7 @@
-from models.adressbook import AddressBook
 from decorators.input_error import input_error
+from models.adressbook import AddressBook
 from models.record import Record
+from utils.get_help_commands import get_help_commands
 
 @input_error
 def add_contact(args, contacts: AddressBook):
@@ -105,3 +106,10 @@ def add_email(args, contacts: AddressBook):
         return f"Email added for {name}."
     else:
         raise KeyError
+
+@input_error
+def help(args):
+    if len(args) > 0:
+        raise ValueError
+
+    return get_help_commands()
