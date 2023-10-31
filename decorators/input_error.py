@@ -46,7 +46,7 @@ def input_error(func):
                 return "Error: The phone number must be 10 digits"
             if func.__name__ == "add_birthday":
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."
-            if func.__name__ == "add_email" or func.__name__ == "change_email":
+            if func.__name__ in  ["add_email", "change_email"]:
                 return "Error: Incorrect email format. Use example@example.com."
         except ValueLengthError:
             if func.__name__ == "search_email":
