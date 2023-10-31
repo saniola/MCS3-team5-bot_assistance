@@ -5,7 +5,7 @@ from models.record import Record
 @input_error
 def add_contact(args, contacts: AddressBook):
     name, phone = args
-    name = name.lower()
+    name = name.title()
 
     if name in contacts:
         record: Record = contacts[name]

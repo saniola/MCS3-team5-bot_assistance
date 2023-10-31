@@ -1,11 +1,8 @@
 from models.adressbook import AddressBook
-from utils.handlers import add_contact, change_contact, show_phone, show_all, add_birthday, show_birthday, birthdays
+from utils.input_parser import parse_input
+from utils.handlers import add_contact, change_contact, show_phone, show_all,\
+    add_birthday, show_birthday, birthdays
 
-def parse_input(user_input):
-    cmd, *args = user_input.split()
-    cmd = cmd.strip().lower()
-
-    return cmd, args
 
 def app():
     contacts = AddressBook()
