@@ -10,6 +10,7 @@ class Record:
         self.phones = []
         self.birthday = None
         self.email = None
+        self.address = None
 
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
@@ -46,3 +47,6 @@ class Record:
     
     def add_email(self, email):
         self.email = Email(email)
+
+    def add_address(self, address):
+        self.address = address

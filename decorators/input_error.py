@@ -16,7 +16,10 @@ def input_error(func):
             elif func.__name__ == "show_birthday":
                 return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\"'"
             elif func.__name__ == "add_email":
-                return "Error: Invalid number of arguments. Use 'add-email [name] [email]'"
+                return "Error: Invalid number of arguments. Use 'add-email \"[fullname]\" [email]'"
+            elif func.__name__ == "add_address":
+                return "Error: Invalid number of arguments. \
+                    Use 'add-address [\"[fullname]\" \"[address]\"'"
         except KeyError:
             if func.__name__ == "show_phone" or func.__name__ == "add_birthday" or func.__name__ == "show_birthday":
                 name = args[0]
