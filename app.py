@@ -1,19 +1,8 @@
-from shlex import shlex
 from models.adressbook import AddressBook
+from utils.input_parser import parse_input
 from utils.handlers import add_contact, change_contact, show_phone, show_all,\
     add_birthday, show_birthday, birthdays
 
-def parse_input(user_input):
-    """
-    The function parses user input and returns 'command' value
-    and all 'arguments'
-    """
-    lexer = shlex(user_input, posix=True)
-    lexer.quotes = '"'
-    lexer.whitespace_split = True
-    cmd, *args = list(lexer)
-
-    return cmd, args
 
 def app():
     contacts = AddressBook()

@@ -4,17 +4,17 @@ def input_error(func):
             return func(*args, **kwargs)
         except ValueError:
             if func.__name__ == "add_contact":
-                return "Error: Invalid number of arguments. Use 'add [\"name\"] [phone number]'."
+                return "Error: Invalid number of arguments. Use 'add \"[name] [surname](optional) [parentname](optional)\" [phone number]'."
             elif func.__name__ == "change_contact":
-                return "Error: Invalid number of arguments. Use 'change [\"name\"] [old phone number] [new phone number]'."
+                return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [old phone number] [new phone number]'."
             elif func.__name__ == "show_phone":
-                return "Error: Invalid number of arguments. Use 'phone [\"name\"]'."
+                return "Error: Invalid number of arguments. Use 'phone \"[fullname]\"'."
             elif func.__name__ == "show_all" or func.__name__ == "birthdays":
                 return "Error: Use without arguments."
             elif func.__name__ == "add_birthday":
-                return "Error: Invalid number of arguments. Use 'add-birthday [\"name\"] [birth date]'"
+                return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\" [birth date]'"
             elif func.__name__ == "show_birthday":
-                return "Error: Invalid number of arguments. Use 'add-birthday [\"name\"]'"
+                return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\"'"
         except KeyError:
             if func.__name__ == "show_phone" or func.__name__ == "add_birthday" or func.__name__ == "show_birthday":
                 name = args[0]
