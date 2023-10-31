@@ -1,8 +1,7 @@
 from models.adressbook import AddressBook
 from utils.input_parser import parse_input
 from utils.handlers import add_contact, change_contact, show_phone, show_all,\
-    add_birthday, show_birthday, birthdays
-
+    add_birthday, show_birthday, birthdays, add_email
 
 def app():
     contacts = AddressBook()
@@ -32,5 +31,7 @@ def app():
             print(show_birthday(args, contacts))
         elif command == "birthdays":
             print(birthdays(args, contacts))
+        elif command == "add-email":
+            print(add_email(args, contacts))
         else:
             print("Invalid command.")
