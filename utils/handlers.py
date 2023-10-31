@@ -57,7 +57,7 @@ def show_all(args, contacts: AddressBook):
 
         for name, record in contacts.items():
             phone_numbers = [phone.value for phone in record.phones]
-            result += f"{name}: {', '.join(phone_numbers)}\n"
+            result += f"{name}: {', '.join(phone_numbers)} email: {record.email}\n"
         return result
 
 @input_error
@@ -91,3 +91,17 @@ def birthdays(args, contacts: AddressBook):
         raise ValueError
 
     return contacts.get_birthdays_per_week()
+
+@input_error
+def add_email(args, contacts: AddressBook):
+    if len(args) != 2:
+        raise ValueError
+    name, email = args
+    name = name.lower()
+
+    if name in contacts:
+        record = contacts[name]
+        record.add_email(email)
+        return f"Email added for {name}."
+    else:
+        raise KeyError

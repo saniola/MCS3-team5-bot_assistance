@@ -1,3 +1,4 @@
+from models.email import Email
 from models.birthday import Birthday
 from models.name import Name
 from models.phone import Phone
@@ -8,6 +9,7 @@ class Record:
         self.name = Name(name)
         self.phones = []
         self.birthday = None
+        self.email = None
 
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
@@ -41,3 +43,6 @@ class Record:
         if self.birthday:
             return f"Birthday for {self.name.value}: {self.birthday.value}"
         return f"No birthday set for {self.name.value}"
+    
+    def add_email(self, email):
+        self.email = Email(email)

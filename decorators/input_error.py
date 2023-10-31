@@ -15,6 +15,8 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'add-birthday [name] [birth date]'"
             elif func.__name__ == "show_birthday":
                 return "Error: Invalid number of arguments. Use 'add-birthday [name]'"
+            elif func.__name__ == "add_email":
+                return "Error: Invalid number of arguments. Use 'add-email [name] [email]'"
         except KeyError:
             if func.__name__ == "show_phone" or func.__name__ == "add_birthday" or func.__name__ == "show_birthday":
                 name = args[0]
@@ -31,4 +33,6 @@ def input_error(func):
                 return "Error: The phone number must be 10 digits"
             if func.__name__ == "add_birthday":
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."
+            if func.__name__ == "add_email":
+                return "Error: Incorrect email format. Use example@example.com."
     return inner
