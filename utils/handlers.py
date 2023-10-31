@@ -1,3 +1,4 @@
+from customErrors.valueLengthError import ValueLengthError
 from models.adressbook import AddressBook
 from decorators.input_error import input_error
 from models.record import Record
@@ -97,7 +98,7 @@ def add_email(args, contacts: AddressBook):
     if len(args) != 2:
         raise ValueError
     name, email = args
-    name = name.lower()
+    name = name.title()
 
     if name in contacts:
         record = contacts[name]
@@ -105,3 +106,41 @@ def add_email(args, contacts: AddressBook):
         return f"Email added for {name}."
     else:
         raise KeyError
+    
+@input_error
+def change_email(args, contacts: AddressBook):
+    if len(args) != 2:
+        raise ValueError
+    
+    name, new_email = args
+    name = name.title()
+
+    if name in contacts:
+        record: Record = contacts[name]
+        record.change_email(new_email)
+        return f"Contact {name} updated. New email: {new_email}."
+    else:
+        raise KeyError
+
+@input_error
+def search_email(args, contacts: AddressBook):
+    if len(args) != 1:
+        raise ValueError
+    
+    search_string = args[0].lower()
+    if len(search_string) < 2:
+        raise ValueLengthError
+    
+    result = ''
+    for name, record in contacts.items():
+        umail = str(record.email).lower()
+        if umail.find(search_string) != -1:
+            phone_numbers = [phone.value for phone in record.phones]
+            result += f"{name}: {', '.join(phone_numbers)} email: {record.email}\n"
+    if result != '':
+        return result
+    else:
+        return "There are no emails matching the search criteria"
+
+
+    

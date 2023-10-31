@@ -6,3 +6,6 @@ class Email(Field):
         if not is_valid_email(email):
             raise TypeError
         super().__init__(email)
+
+    def __str__(self):
+        return str(self.value)

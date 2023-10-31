@@ -1,3 +1,6 @@
+from customErrors.valueLengthError import ValueLengthError
+
+
 def input_error(func):
     def inner(*args, **kwargs):
         try:
@@ -17,10 +20,20 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\"'"
             elif func.__name__ == "add_email":
                 return "Error: Invalid number of arguments. Use 'add-email [name] [email]'"
+            elif func.__name__ == "change_email":
+                return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [new email]'."
+            elif func.__name__ == "search_email":
+                return "Error: Invalid number of arguments. Use 'search-email [search_string]'"
         except KeyError:
             if func.__name__ == "show_phone" or func.__name__ == "add_birthday" or func.__name__ == "show_birthday":
                 name = args[0]
                 return f"Error: Contact with name {name} not found."
+            if func.__name__ == "add_email":
+                name = args[0]
+                return f"Error: Contact with name {name[0]} not found."
+            if func.__name__ == "change_email":
+                record = args[0]
+                return f"Error: Contact with name {record[0]} not found in the record."
             if func.__name__ == "show_all":
                 return "Error: The contacts list is empty."
             if func.__name__ == "change_contact":
@@ -33,6 +46,9 @@ def input_error(func):
                 return "Error: The phone number must be 10 digits"
             if func.__name__ == "add_birthday":
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."
-            if func.__name__ == "add_email":
+            if func.__name__ == "add_email" or func.__name__ == "change_email":
                 return "Error: Incorrect email format. Use example@example.com."
+        except ValueLengthError:
+            if func.__name__ == "search_email":
+                return ValueLengthError.message
     return inner

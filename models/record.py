@@ -46,3 +46,6 @@ class Record:
     
     def add_email(self, email):
         self.email = Email(email)
+    
+    def change_email(self, email):
+        self.email = Email(email)
