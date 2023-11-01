@@ -1,8 +1,18 @@
+import pickle
 from collections import UserDict, defaultdict
 from utils.get_next_week_birthdays import get_next_week_birthdays
 from utils.print_results import print_results
 
 class AddressBook(UserDict):
+    data_file_name = './data/addres_book.bin'
+
+    def __init__(self):
+        try:
+            with open(AddressBook.data_file_name, 'rb') as fn:
+                self.data = pickle.load(fn)
+        except FileNotFoundError:
+            super().__init__(self)
+
     def add_record(self, record):
         self.data[record.name.value] = record
 
@@ -17,3 +27,7 @@ class AddressBook(UserDict):
         birthdays_per_week = defaultdict(list)
         get_next_week_birthdays(self.data, birthdays_per_week)
         return print_results(birthdays_per_week)
+    
+    def save(self):
+        with open(AddressBook.data_file_name, 'wb') as fn:
+            pickle.dump(self, fn)
