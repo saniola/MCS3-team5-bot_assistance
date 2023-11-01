@@ -46,6 +46,12 @@ class Record:
     
     def add_email(self, email):
         self.email = Email(email)
-    
-    def change_email(self, email):
-        self.email = Email(email)
+
+    def change_name(self, new_name):
+        self.name.value = new_name
+
+    def isPhoneExists(self, phone):
+        for item in self.phones:
+            if item.value == phone:
+                return True
+        return False

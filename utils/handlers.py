@@ -1,3 +1,4 @@
+from customErrors.doubleKeyError import DoubleKeyError
 from customErrors.notFoundError import NotFoundError
 from customErrors.valueLengthError import ValueLengthError
 from decorators.input_error import input_error
@@ -11,7 +12,11 @@ def add_contact(args, contacts: AddressBook):
 
     if name in contacts:
         record: Record = contacts[name]
-        record.add_phone(phone)
+        if not record.isPhoneExists(phone):
+            record.add_phone(phone)
+        else:
+            raise DoubleKeyError(record, name)
+        
     else:
         record: Record = Record(name)
         record.add_phone(phone)
@@ -28,6 +33,27 @@ def change_contact(args, contacts: AddressBook):
 
         record.edit_phone(old_phone, new_phone)
         return f"Contact {name} updated. New phone number: {new_phone}."
+    else:
+        raise KeyError
+    
+@input_error
+def change_name(args, contacts: AddressBook):
+    name, new_name = args
+    if  len(args) != 2:
+        raise ValueError
+    
+    if new_name in contacts:
+        record: Record = contacts[new_name]
+        raise DoubleKeyError(record, new_name)
+
+    temp_contacts = AddressBook()
+    if name in contacts:
+        for contact in contacts.items():
+            record: Record = contacts[contact[0]]
+            if contact[0] == name:
+                record.change_name(new_name)
+            temp_contacts.add_record(record)
+        return temp_contacts
     else:
         raise KeyError
 
@@ -82,6 +108,19 @@ def show_birthday(args, contacts: AddressBook):
         return record.show_birthday()
     else:
         raise KeyError
+    
+@input_error
+def change_birthday(args, contacts: AddressBook):
+    if  len(args) != 2:
+        raise ValueError
+    name, birthday = args
+
+    if name in contacts:
+        record = contacts[name]
+        record.add_birthday(birthday)
+        return f"Birthday changed for {name}."
+    else:
+        raise KeyError
 
 @input_error
 def birthdays(args, contacts: AddressBook):
@@ -112,7 +151,7 @@ def change_email(args, contacts: AddressBook):
 
     if name in contacts:
         record: Record = contacts[name]
-        record.change_email(new_email)
+        record.add_email(new_email)
         return f"Contact {name} updated. New email: {new_email}."
     else:
         raise KeyError

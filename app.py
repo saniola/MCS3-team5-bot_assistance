@@ -4,7 +4,9 @@ from utils.get_welcome_message import get_welcome_message
 from utils.get_help_commands import get_help_commands
 from utils.handlers import add_contact, change_contact, show_phone, show_all,\
     add_birthday, show_birthday, birthdays, add_email, search_email,\
-    change_email, help
+    change_email, help, change_name, change_birthday
+from customErrors.doubleKeyError import DoubleKeyError
+
 
 def app():
     print(get_welcome_message())
@@ -25,12 +27,21 @@ def app():
             print(add_contact(args, contacts))
         elif command == "change":
             print(change_contact(args, contacts))
+        elif command == "change-name":
+            result = change_name(args, contacts)
+            if type(result) != AddressBook:
+                print(result)
+            else:
+                contacts = result
+                print(f"Contact {args[0]} updated. New contact name: {args[1]}.")
         elif command == "phone":
             print(show_phone(args, contacts))
         elif command == "all":
             print(show_all(args, contacts))
         elif command == "add-birthday":
             print(add_birthday(args, contacts))
+        elif command == "change-birthday":
+            print(change_birthday(args, contacts))
         elif command == "show-birthday":
             print(show_birthday(args, contacts))
         elif command == "birthdays":
