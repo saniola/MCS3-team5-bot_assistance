@@ -20,13 +20,15 @@ def input_error(func):
             elif func.__name__ == "show_birthday":
                 return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\"'"
             elif func.__name__ == "add_email":
-                return "Error: Invalid number of arguments. Use 'add-email [fullname] [email]'"
+                return "Error: Invalid number of arguments. Use 'add-email \"[fullname]\" [email]'"
             elif func.__name__ == "change_email":
                 return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [new email]'."
             elif func.__name__ == "search_email":
                 return "Error: Invalid number of arguments. Use 'search-email [search_string]'"
         except KeyError:
-            if func.__name__ in ["show_phone", "add_birthday", "show_birthday"]:
+            if func.__name__ in [
+                    "show_phone", "add_birthday", "show_birthday", "add_address", "del_address"
+                    ]:
                 name = args[0]
                 return f"Error: Contact with name {name} not found."
             if func.__name__ == "add_email":
@@ -42,13 +44,17 @@ def input_error(func):
                 return f"Error: Phone {phone} not found in the record."
             if func.__name__ == "birthdays":
                 return "Error: There are no birthdays in the list of contacts"
-        except TypeError:
+
+        except TypeError as e:
             if func.__name__ in ["change_contact", "add_contact"]:
                 return "Error: The phone number must be 10 digits"
             if func.__name__ == "add_birthday":
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."
             if func.__name__ in  ["add_email", "change_email"]:
                 return "Error: Incorrect email format. Use example@example.com."
+            if func.__name__ in ["add-address", "change-address"]:
+                return f"Error: {e}"
+            
         except ValueLengthError:
             if func.__name__ == "search_email":
                 return ValueLengthError.message
