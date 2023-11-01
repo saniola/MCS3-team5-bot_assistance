@@ -12,20 +12,20 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [old phone number] [new phone number]'."
             elif func.__name__ == "show_phone":
                 return "Error: Invalid number of arguments. Use 'phone \"[fullname]\"'."
-            elif func.__name__ == "show_all" or func.__name__ == "birthdays":
+            elif func.__name__ in ["show_all", "birthdays", "help"]:
                 return "Error: Use without arguments."
             elif func.__name__ == "add_birthday":
                 return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\" [birth date]'"
             elif func.__name__ == "show_birthday":
                 return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\"'"
             elif func.__name__ == "add_email":
-                return "Error: Invalid number of arguments. Use 'add-email [name] [email]'"
+                return "Error: Invalid number of arguments. Use 'add-email [fullname] [email]'"
             elif func.__name__ == "change_email":
                 return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [new email]'."
             elif func.__name__ == "search_email":
                 return "Error: Invalid number of arguments. Use 'search-email [search_string]'"
         except KeyError:
-            if func.__name__ == "show_phone" or func.__name__ == "add_birthday" or func.__name__ == "show_birthday":
+            if func.__name__ in ["show_phone", "add_birthday", "show_birthday"]:
                 name = args[0]
                 return f"Error: Contact with name {name} not found."
             if func.__name__ == "add_email":
@@ -42,7 +42,7 @@ def input_error(func):
             if func.__name__ == "birthdays":
                 return "Error: There are no birthdays in the list of contacts"
         except TypeError:
-            if func.__name__ == "change_contact" or func.__name__ == "add_contact":
+            if func.__name__ in ["change_contact", "add_contact"]:
                 return "Error: The phone number must be 10 digits"
             if func.__name__ == "add_birthday":
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."

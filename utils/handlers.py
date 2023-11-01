@@ -1,7 +1,8 @@
 from customErrors.valueLengthError import ValueLengthError
-from models.adressbook import AddressBook
 from decorators.input_error import input_error
+from models.adressbook import AddressBook
 from models.record import Record
+from utils.get_help_commands import get_help_commands
 
 @input_error
 def add_contact(args, contacts: AddressBook):
@@ -142,5 +143,9 @@ def search_email(args, contacts: AddressBook):
     else:
         return "There are no emails matching the search criteria"
 
+@input_error
+def help(args):
+    if len(args) > 0:
+        raise ValueError
 
-    
+    return get_help_commands()
