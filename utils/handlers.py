@@ -1,5 +1,6 @@
 from decorators.input_error import input_error
 from models.adressbook import AddressBook
+from models.notes import Notes
 from models.record import Record
 from utils.get_help_commands import get_help_commands
 
@@ -113,3 +114,66 @@ def help(args):
         raise ValueError
 
     return get_help_commands()
+
+@input_error
+def add_note(args, notes: AddressBook):
+    title, text, *tags = args
+    title = title.title()
+    notes.add_note(title, text, tags)
+    return f"Note '{title}' added."
+
+@input_error
+def edit_note_title(args, notes: Notes):
+    old_title, new_title = args
+    old_title = old_title.title()
+    new_title = new_title.title()
+    notes.edit_note_title(old_title, new_title)
+    return f"Note '{old_title}' title updated to '{new_title}'."
+
+@input_error
+def edit_note_text(args, notes: Notes):
+    title, new_text = args
+    title = title.title()
+    notes.edit_note_text(title, new_text)
+    return f"Note '{title}' text updated."
+
+@input_error
+def add_tag_to_note(args, notes: Notes):
+    title, tag = args
+    title = title.title()
+    notes.add_tag_to_note(title, tag)
+    return f"Tag '{tag}' added to note '{title}'."
+
+@input_error
+def remove_tag_from_note(args, notes: Notes):
+    title, tag = args
+    title = title.title()
+    notes.remove_tag_from_note(title, tag)
+    return f"Tag '{tag}' removed from note '{title}'."
+
+@input_error
+def find_notes_by_title(args, notes: Notes):
+    title = args[0]
+    title = title.title()
+    matching_notes = notes.find_notes_by_title(title)
+
+    if matching_notes:
+        result = "Matching notes:\n"
+        for note in matching_notes:
+            result += str(note) + "\n"
+        return result
+    else:
+        return f"No notes found with title '{title}'."
+
+@input_error
+def find_notes_by_tags(args, notes: Notes):
+    tags = args
+    matching_notes = notes.find_notes_by_tags(tags)
+
+    if matching_notes:
+        result = "Matching notes:\n"
+        for note in matching_notes:
+            result += str(note) + "\n"
+        return result
+    else:
+        return f"No notes found with tags: {', '.join(tags)}."
