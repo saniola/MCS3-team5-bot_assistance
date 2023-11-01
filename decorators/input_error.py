@@ -1,3 +1,4 @@
+from customErrors.notFoundError import NotFoundError
 from customErrors.valueLengthError import ValueLengthError
 
 
@@ -51,4 +52,6 @@ def input_error(func):
         except ValueLengthError:
             if func.__name__ == "search_email":
                 return ValueLengthError.message
+        except NotFoundError as e:
+            return "Error: " + e.message
     return inner

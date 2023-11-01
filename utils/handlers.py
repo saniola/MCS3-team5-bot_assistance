@@ -1,3 +1,4 @@
+from customErrors.notFoundError import NotFoundError
 from customErrors.valueLengthError import ValueLengthError
 from decorators.input_error import input_error
 from models.adressbook import AddressBook
@@ -7,7 +8,6 @@ from utils.get_help_commands import get_help_commands
 @input_error
 def add_contact(args, contacts: AddressBook):
     name, phone = args
-    name = name.title()
 
     if name in contacts:
         record: Record = contacts[name]
@@ -22,7 +22,6 @@ def add_contact(args, contacts: AddressBook):
 @input_error
 def change_contact(args, contacts: AddressBook):
     name, old_phone, new_phone = args
-    name = name.lower()
 
     if name in contacts:
         record: Record = contacts[name]
@@ -37,7 +36,6 @@ def show_phone(args, contacts: AddressBook):
     if  len(args) != 1:
         raise ValueError
     name = args[0]
-    name = name.lower()
 
     if name in contacts:
         record: Record = contacts[name]
@@ -65,7 +63,6 @@ def show_all(args, contacts: AddressBook):
 @input_error
 def add_birthday(args, contacts: AddressBook):
     name, birthday = args
-    name = name.lower()
 
     if name in contacts:
         record = contacts[name]
@@ -79,7 +76,6 @@ def show_birthday(args, contacts: AddressBook):
     if  len(args) != 1:
         raise ValueError
     name = args[0]
-    name = name.lower()
 
     if name in contacts:
         record = contacts[name]
@@ -99,7 +95,6 @@ def add_email(args, contacts: AddressBook):
     if len(args) != 2:
         raise ValueError
     name, email = args
-    name = name.title()
 
     if name in contacts:
         record = contacts[name]
@@ -114,7 +109,6 @@ def change_email(args, contacts: AddressBook):
         raise ValueError
     
     name, new_email = args
-    name = name.title()
 
     if name in contacts:
         record: Record = contacts[name]
@@ -141,7 +135,7 @@ def search_email(args, contacts: AddressBook):
     if result != '':
         return result
     else:
-        return "There are no emails matching the search criteria"
+        raise NotFoundError('email')
 
 @input_error
 def help(args):
