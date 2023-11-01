@@ -5,7 +5,7 @@ class Address():
         self.city = city
         self.street = None
         self.house = None
-        self.appartment = None
+        self.apartment = None
 
     def set_street(self, street):
         if len(street) <= 1:
@@ -26,11 +26,11 @@ class Address():
             raise TypeError("house number have to be not empty")
         if len(appartment) <= 1:
             raise TypeError("street should have more than one letter")
-        self.appartment = appartment
+        self.apartment = appartment
     
     def __str__(self):
         return f"city: {self.city}"\
          f"{', street: '+self.street if self.street is not None else ''}"\
          f"{', house: '+self.house if self.house is not None else ''}"\
-         f"{', appartment: '+self.appartment if self.appartment is not None else ''}\n"
+         f"{', appartment: '+self.apartment if self.apartment is not None else ''}\n"
         
