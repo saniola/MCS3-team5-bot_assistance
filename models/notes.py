@@ -1,4 +1,4 @@
-from note import Note
+from models.note import Note
 
 class Notes:
     def __init__(self):
