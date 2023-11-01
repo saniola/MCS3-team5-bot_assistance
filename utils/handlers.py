@@ -14,7 +14,7 @@ def add_contact(args, contacts: AddressBook):
 
     if name in contacts:
         record: Record = contacts[name]
-        if record.find_phone(phone) != phone:
+        if not record.find_phone(phone):
             record.add_phone(phone)
         else:
             raise DoubleKeyError(record, name)
