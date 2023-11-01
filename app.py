@@ -5,6 +5,7 @@ from utils.input_parser import parse_input
 from utils.get_welcome_message import get_welcome_message
 from utils.get_help_commands import get_help_commands
 
+
 def app():
     print(get_welcome_message())
     print(get_help_commands())
@@ -26,18 +27,31 @@ def app():
             print(handler.add_contact(args, contacts))
         elif command == "change":
             print(handler.change_contact(args, contacts))
+        elif command == "change-name":
+            result = handler.change_name(args, contacts)
+            if type(result) != AddressBook:
+                print(result)
+            else:
+                contacts = result
+                print(f"Contact {args[0]} updated. New contact name: {args[1]}.")
         elif command == "phone":
             print(handler.show_phone(args, contacts))
         elif command == "all":
             print(handler.show_all(args, contacts))
         elif command == "add-birthday":
             print(handler.add_birthday(args, contacts))
+        elif command == "change-birthday":
+            print(handler.change_birthday(args, contacts))
         elif command == "show-birthday":
             print(handler.show_birthday(args, contacts))
         elif command == "birthdays":
             print(handler.birthdays(args, contacts))
         elif command == "add-email":
             print(handler.add_email(args, contacts))
+        elif command == "change-email":
+            print(handler.change_email(args, contacts))
+        elif command == "search-email":
+            print(handler.search_email(args, contacts))
         elif command == "add-note":
             print(handler.add_note(args, notes))
         elif command == "edit-note-title":

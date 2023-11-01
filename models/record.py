@@ -38,8 +38,8 @@ class Record:
     def find_phone(self, phone):
         for item in self.phones:
             if item.value == phone:
-                return item.value
-        raise KeyError
+                return True
+        return False
 
     def add_birthday(self, birthday):
         self.birthday = Birthday(birthday)
@@ -54,6 +54,9 @@ class Record:
 
     def change_email(self, email):
         self.email = Email(email)
+
+    def change_name(self, new_name):
+        self.name.value = new_name
 
     def add_address(self, city) -> Address:
         self.address = Address(city)
