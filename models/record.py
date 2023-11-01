@@ -50,6 +50,9 @@ class Record:
         return f"No birthday set for {self.name.value}"
     
     def add_email(self, email):
+        self.email = Email(email)    
+
+    def change_email(self, email):
         self.email = Email(email)
 
     def add_address(self, city) -> Address:

@@ -37,6 +37,10 @@ def app():
             print(handler.birthdays(args, contacts))
         elif command == "add-email":
             print(handler.add_email(args, contacts))
+        elif command == "change-email":
+            print(handler.change_email(args, contacts))
+        elif command == "search-email":
+            print(handler.search_email(args, contacts))
         elif command == "help":
             print(handler.help_info(args))
         elif command == "add-address":
