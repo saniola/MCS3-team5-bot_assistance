@@ -177,3 +177,12 @@ def find_notes_by_tags(args, notes: Notes):
         return result
     else:
         return f"No notes found with tags: {', '.join(tags)}."
+
+@input_error
+def sort_by_tag(args, notes: Notes):
+    tag = args[0]
+    matching_notes = notes.sort_notes_by_tag(tag)
+    if matching_notes:
+        print("Notes sorted by tag:")
+        for note in matching_notes:
+            print(str(note))

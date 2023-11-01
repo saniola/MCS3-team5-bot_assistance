@@ -37,3 +37,8 @@ class Notes:
 
     def find_notes_by_tags(self, search_tags):
         return [note for note in self.notes if note.match_tags(search_tags)]
+
+    def sort_notes_by_tag(self, tag):
+        sorted_notes = [note for note in self.notes if tag in note.tags]
+        sorted_notes.sort(key=lambda x: x.title)
+        return sorted_notes

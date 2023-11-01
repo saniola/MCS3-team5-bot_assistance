@@ -51,6 +51,8 @@ def app():
             print(handler.find_notes_by_title(args, notes))
         elif command == "find-notes-by-tags":
             print(handler.find_notes_by_tags(args, notes))
+        elif command == "sort-by-tag":
+            print(handler.sort_by_tag(args, notes))
         elif command == "help":
             print(help(args))
         else:
