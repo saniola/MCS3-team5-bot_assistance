@@ -38,7 +38,7 @@ def app():
         elif command == "add-email":
             print(handler.add_email(args, contacts))
         elif command == "help":
-            print(handler.help(args))
+            print(handler.help_info(args))
         elif command == "add-address":
             print(handler.add_address(args, contacts))
         elif command == "del-address":

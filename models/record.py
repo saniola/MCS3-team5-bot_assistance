@@ -17,7 +17,7 @@ class Record:
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"\
             f"{', email: ' + self.email.value if self.email is not None else ''}"\
             f"{', birthday: ' + self.birthday.value if self.birthday is not None else ''}"\
-            f", {str(self.address) if self.address is not None else ''}"
+            f"{', ' + str(self.address) if self.address is not None else ''}"
         
     def add_phone(self, phone):
         self.phones.append(Phone(phone))

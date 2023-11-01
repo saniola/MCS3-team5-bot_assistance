@@ -52,12 +52,12 @@ def show_all(args, contacts: AddressBook):
         raise KeyError
 
     if len(contacts) > 0:
-        result = "\nAll saved contacts with phone numbers:\n"
+        result = "All saved contacts with phone numbers:\n"
 
         for record in contacts.values():
             result += str(record)+'\n'
-        return result
-    
+        return result.strip('\n')
+
 @input_error
 def add_birthday(args, contacts: AddressBook):
     name, birthday = args
@@ -102,7 +102,7 @@ def add_email(args, contacts: AddressBook):
         raise KeyError
 
 @input_error
-def help(args):
+def help_info(args):
     if len(args) > 0:
         raise ValueError
 
@@ -118,7 +118,7 @@ def add_address(args, contacts: AddressBook):
         while True:
             city = input("Enter a city or leave it blank to stop: ")
             if not city:
-                    break
+                break
             try:
                 adr = record.add_address(city)
             except TypeError as e:
