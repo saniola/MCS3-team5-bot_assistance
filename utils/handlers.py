@@ -50,15 +50,16 @@ def show_all(args, contacts: AddressBook):
         raise KeyError
 
     if len(contacts) > 0:
-        result = "All saved contacts with phone numbers:\n"
+        result = "\nAll saved contacts with phone numbers:\n"
 
-        for name, record in contacts.items():
-            phone_numbers = [phone.value for phone in record.phones]
-            result += f"{name}: {', '.join(phone_numbers)}"\
-                f"{', email: '+record.email if record.email is not None else ''}"\
-                f"{', address: '+record.address if record.address is not None else ''}\n"
+        for record in contacts.values():
+            result += str(record)+'\n'
+            # phone_numbers = [phone.value for phone in record.phones]
+            # result += f"{name}: {', '.join(phone_numbers)}"\
+            #     f"{', email: '+record.email if record.email is not None else ''}"
+            #     # f"{', address: '+record.address}\n"
         return result
-
+    
 @input_error
 def add_birthday(args, contacts: AddressBook):
     name, birthday = args
@@ -104,13 +105,29 @@ def add_email(args, contacts: AddressBook):
 
 @input_error
 def add_address(args, contacts: AddressBook):
-    if len(args) != 2:
+    if len(args) != 1:
         raise ValueError
-    name, address = args
-
+    name = args[0]
     if name in contacts:
         record = contacts[name]
-        record.add_address(address)
+        while True:
+            city = input("Enter a city : ")
+            adr = record.add_address(city)
+            if adr:
+                street = input("Enter a street or leave it blank to stop: ")
+                if street == '':
+                    break
+                adr.set_street(street)
+                house = input("Enter a house number or leave it blank to stop: ")
+                if not house:
+                    break
+                adr.set_house(house)
+                appartment = input("Enter appartment or leave it blank to stop: ")
+                if not appartment:
+                    break
+                adr.set_appartment(appartment)
+
         return f"Address added for {name}."
     else:
         raise KeyError
+   
