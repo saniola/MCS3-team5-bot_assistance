@@ -3,6 +3,7 @@ from models.adressbook import AddressBook
 from models.record import Record
 from utils.get_help_commands import get_help_commands
 
+
 @input_error
 def add_contact(args, contacts: AddressBook):
     name, phone = args
@@ -55,10 +56,6 @@ def show_all(args, contacts: AddressBook):
 
         for record in contacts.values():
             result += str(record)+'\n'
-            # phone_numbers = [phone.value for phone in record.phones]
-            # result += f"{name}: {', '.join(phone_numbers)}"\
-            #     f"{', email: '+record.email if record.email is not None else ''}"
-            #     # f"{', address: '+record.address}\n"
         return result
     
 @input_error
@@ -114,16 +111,22 @@ def help(args):
 @input_error
 def add_address(args, contacts: AddressBook):
     if len(args) != 1:
-        raise ValueError
+        raise ValueError("add-address")
     name = args[0]
     if name in contacts:
         record = contacts[name]
         while True:
-            city = input("Enter a city : ")
-            adr = record.add_address(city)
+            city = input("Enter a city or leave it blank to stop: ")
+            if not city:
+                    break
+            try:
+                adr = record.add_address(city)
+            except TypeError as e:
+                print(f"Error: {e}")
+                continue
             if adr:
                 street = input("Enter a street or leave it blank to stop: ")
-                if street == '':
+                if not street:
                     break
                 adr.set_street(street)
                 house = input("Enter a house number or leave it blank to stop: ")
@@ -138,4 +141,26 @@ def add_address(args, contacts: AddressBook):
         return f"Address added for {name}."
     else:
         raise KeyError
-   
+
+
+@input_error
+def del_address(args, contacts: AddressBook):
+    if len(args) != 1:
+        raise ValueError("del-address")
+    name = args[0]
+    if name in contacts:
+        record = contacts[name]
+        record.del_address()
+        return f"Address deleted for {name}."
+    else:
+        raise KeyError
+
+
+@input_error
+def change_address(args, contacts: AddressBook):
+    if len(args) != 1:
+        raise ValueError("change-address")
+    del_address(args, contacts)
+    add_address(args, contacts)
+
+    return f"Address changed for {args[0]}."

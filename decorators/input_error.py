@@ -2,7 +2,7 @@ def input_error(func):
     def inner(*args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except ValueError:
+        except ValueError as e:
             if func.__name__ == "add_contact":
                 return "Error: Invalid number of arguments. Use 'add \"[name] [surname](optional) [parentname](optional)\" [phone number]'."
             elif func.__name__ == "change_contact":
@@ -17,11 +17,13 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\"'"
             elif func.__name__ == "add_email":
                 return "Error: Invalid number of arguments. Use 'add-email \"[fullname]\" [email]'"
-            elif func.__name__ == "add_address":
-                return "Error: Invalid number of arguments. "\
-                    "Use 'add-address [\"[fullname]\" \"[address]\"'"
+            elif func.__name__ in ["add_address", "change_address", "del_address"]:
+                return f"Error: Invalid number of arguments. Use '{e} \"[fullname]\"'"
+
         except KeyError:
-            if func.__name__ in ["show_phone", "add_birthday", "show_birthday"]:
+            if func.__name__ in [
+                    "show_phone", "add_birthday", "show_birthday", "add_address", "del_address"
+                    ]:
                 name = args[0]
                 return f"Error: Contact with name {name} not found."
             if func.__name__ == "show_all":
@@ -31,11 +33,15 @@ def input_error(func):
                 return f"Error: Phone {phone} not found in the record."
             if func.__name__ == "birthdays":
                 return "Error: There are no birthdays in the list of contacts"
-        except TypeError:
+
+        except TypeError as e:
             if func.__name__ in ["change_contact", "add_contact"]:
                 return "Error: The phone number must be 10 digits"
             if func.__name__ == "add_birthday":
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."
             if func.__name__ == "add_email":
                 return "Error: Incorrect email format. Use example@example.com."
+            if func.__name__ in ["add-address", "change-address"]:
+                return f"Error: {e}"
+
     return inner
