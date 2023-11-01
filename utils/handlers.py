@@ -14,7 +14,7 @@ def add_contact(args, contacts: AddressBook):
 
     if name in contacts:
         record: Record = contacts[name]
-        if not record.isPhoneExists(phone):
+        if record.find_phone(phone) != phone:
             record.add_phone(phone)
         else:
             raise DoubleKeyError(record, name)
@@ -50,9 +50,9 @@ def change_name(args, contacts: AddressBook):
 
     temp_contacts = AddressBook()
     if name in contacts:
-        for contact in contacts.items():
-            record: Record = contacts[contact[0]]
-            if contact[0] == name:
+        for key in contacts.keys():
+            record: Record = contacts[key]
+            if record.name.value == name:
                 record.change_name(new_name)
             temp_contacts.add_record(record)
         return temp_contacts
@@ -173,27 +173,7 @@ def search_email(args, contacts: AddressBook):
             phone_numbers = [phone.value for phone in record.phones]
             result += f"{name}: {', '.join(phone_numbers)} email: {record.email}\n"
     if result != '':
-        return result
-    else:
-        raise NotFoundError('email')
-
-@input_error
-def search_email(args, contacts: AddressBook):
-    if len(args) != 1:
-        raise ValueError
-    
-    search_string = args[0].lower()
-    if len(search_string) < 2:
-        raise ValueLengthError
-    
-    result = ''
-    for name, record in contacts.items():
-        umail = str(record.email).lower()
-        if umail.find(search_string) != -1:
-            phone_numbers = [phone.value for phone in record.phones]
-            result += f"{name}: {', '.join(phone_numbers)} email: {record.email}\n"
-    if result != '':
-        return result
+        return result.removesuffix('\n')
     else:
         raise NotFoundError('email')
 

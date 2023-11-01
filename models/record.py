@@ -58,11 +58,6 @@ class Record:
     def change_name(self, new_name):
         self.name.value = new_name
 
-    def isPhoneExists(self, phone):
-        for item in self.phones:
-            if item.value == phone:
-                return True
-        return False
     def add_address(self, city) -> Address:
         self.address = Address(city)
         return self.address
