@@ -42,3 +42,10 @@ class Notes:
         sorted_notes = [note for note in self.notes if tag in note.tags]
         sorted_notes.sort(key=lambda x: x.title)
         return sorted_notes
+
+    def remove_note_by_title(self, title):
+        for note in self.notes:
+            if note.title == title:
+                self.notes.remove(note)
+                return True
+        return False

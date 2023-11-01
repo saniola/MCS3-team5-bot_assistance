@@ -186,3 +186,11 @@ def sort_by_tag(args, notes: Notes):
         print("Notes sorted by tag:")
         for note in matching_notes:
             print(str(note))
+
+@input_error
+def remove_note_by_title(args, notes: Notes):
+    title = args[0]
+    if notes.remove_note_by_title(title):
+        print(f"Note '{title}' removed.")
+    else:
+        print(f"Note '{title}' not found.")
