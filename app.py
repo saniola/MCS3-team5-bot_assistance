@@ -17,6 +17,7 @@ def app():
         command, args = parse_input(user_input)
 
         if command in ["close", "exit"]:
+            contacts.save()
             print("Goodbye!")
             break
         elif command == "hello":
@@ -55,7 +56,19 @@ def app():
             print(handler.sort_by_tag(args, notes))
         elif command == "remove-note-by-title":
             print(handler.remove_note_by_title(args, notes))
+        elif command == "change-email":
+            print(handler.change_email(args, contacts))
+        elif command == "search-email":
+            print(handler.search_email(args, contacts))
         elif command == "help":
-            print(help(args))
+            print(handler.help_info(args))
+        elif command == "add-address":
+            print(handler.add_address(args, contacts))
+        elif command == "del-address":
+            print(handler.del_address(args, contacts))
+        elif command == "change-address":
+            print(handler.change_address(args, contacts))
+        elif command == "save":
+            print(contacts.save())
         else:
             print("Invalid command. Use 'help' to see list of the exist commands ")

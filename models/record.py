@@ -2,6 +2,7 @@ from models.email import Email
 from models.birthday import Birthday
 from models.name import Name
 from models.phone import Phone
+from models.address import Address
 from utils.is_valid_phone import is_valid_phone
 
 class Record:
@@ -10,10 +11,14 @@ class Record:
         self.phones = []
         self.birthday = None
         self.email = None
+        self.address = None
 
     def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
-
+        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"\
+            f"{', email: ' + self.email.value if self.email is not None else ''}"\
+            f"{', birthday: ' + self.birthday.value if self.birthday is not None else ''}"\
+            f"{', ' + str(self.address) if self.address is not None else ''}"
+        
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
 
@@ -45,4 +50,15 @@ class Record:
         return f"No birthday set for {self.name.value}"
     
     def add_email(self, email):
+        self.email = Email(email)    
+
+    def change_email(self, email):
         self.email = Email(email)
+
+    def add_address(self, city) -> Address:
+        self.address = Address(city)
+        return self.address
+    
+    def del_address(self):
+        self.address = None
+        
