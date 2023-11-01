@@ -39,7 +39,7 @@ class Record:
         for item in self.phones:
             if item.value == phone:
                 return True
-        raise False
+        return False
 
     def add_birthday(self, birthday):
         self.birthday = Birthday(birthday)
