@@ -3,7 +3,8 @@ from utils.input_parser import parse_input
 from utils.get_welcome_message import get_welcome_message
 from utils.get_help_commands import get_help_commands
 from utils.handlers import add_contact, change_contact, show_phone, show_all,\
-    add_birthday, show_birthday, birthdays, add_email, help
+    add_birthday, show_birthday, birthdays, add_email, search_email,\
+    change_email, help
 
 def app():
     print(get_welcome_message())
@@ -36,6 +37,10 @@ def app():
             print(birthdays(args, contacts))
         elif command == "add-email":
             print(add_email(args, contacts))
+        elif command == "change-email":
+            print(change_email(args, contacts))
+        elif command == "search-email":
+            print(search_email(args, contacts))
         elif command == "help":
             print(help(args))
         else:
