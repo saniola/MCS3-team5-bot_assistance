@@ -1,15 +1,27 @@
 import utils.handlers as handler
+import gnureadline as readline
 from models.adressbook import AddressBook
 from models.notes import Notes
 from utils.input_parser import parse_input
 from utils.get_welcome_message import get_welcome_message
 from utils.get_help_commands import get_help_commands
 
+commands = ["change", "change-name", "change-email"]
+
+def complete(text, state):
+    options = [command for command in commands if command.startswith(text)]
+    if state < len(options):
+        return options[state]
+    else:
+        return None
+
 
 def app():
     print(get_welcome_message())
     print(get_help_commands())
 
+    readline.set_completer(complete)
+    readline.parse_and_bind("tab: complete")
     contacts = AddressBook()
     notes = Notes()
 
