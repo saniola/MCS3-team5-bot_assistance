@@ -326,9 +326,9 @@ def change_address(args, contacts: AddressBook):
 
 @input_error
 def delete_record(args, contacts: AddressBook):
-    name = args[0]
     if  len(args) != 1:
         raise ValueError
+    name = args[0]
     
     temp_contacts = AddressBook()
     if name in contacts:
