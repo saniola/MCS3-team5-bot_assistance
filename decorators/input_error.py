@@ -30,7 +30,7 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'delete \"[fullname]\"'"
         except KeyError:
             if func.__name__ in [
-                    "show_phone", "add_birthday", "show_birthday", "add_address", "del_address", "change_name", "delete_record"
+                    "show_phone", "add_birthday", "show_birthday", "add_address", "delete_address", "edit_name", "delete_record"
                     ]:
                 name = args[0]
                 return f"Error: Contact with name {name} not found."

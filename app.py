@@ -55,8 +55,6 @@ def app():
             print(handlers["add_email"](args, contacts))
         elif command == "edit-email":
             print(handlers["edit_email"](args, contacts))
-        elif command == "search-email":
-            print(handlers["search_email"](args, contacts))
         elif command == "search":
             print(handlers["search"](args, contacts))
         elif command == "delete":
