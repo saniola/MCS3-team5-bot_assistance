@@ -26,11 +26,11 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'add-email \"[fullname]\" [email]'"
             elif func.__name__ == "change_email":
                 return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [new email]'."
-            elif func.__name__ == "search_email":
-                return "Error: Invalid number of arguments. Use 'search-email [search_string]'"
+            elif func.__name__ == "delete_record":
+                return "Error: Invalid number of arguments. Use 'delete \"[fullname]\"'"
         except KeyError:
             if func.__name__ in [
-                    "show_phone", "add_birthday", "show_birthday", "add_address", "del_address", "change_name"
+                    "show_phone", "add_birthday", "show_birthday", "add_address", "del_address", "change_name", "delete_record"
                     ]:
                 name = args[0]
                 return f"Error: Contact with name {name} not found."
@@ -58,8 +58,7 @@ def input_error(func):
             if func.__name__ in ["add-address", "change-address"]:
                 return f"Error: {e}"
         except ValueLengthError:
-            if func.__name__ == "search_email":
-                return ValueLengthError.message
+            return ValueLengthError.message
         except NotFoundError as e:
             return "Error: " + e.message
         except DoubleKeyError as e:
