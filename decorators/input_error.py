@@ -28,6 +28,12 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [new email]'."
             elif func.__name__ == "search_email":
                 return "Error: Invalid number of arguments. Use 'search-email [search_string]'"
+            elif func.__name__ == "add_address":
+                return "Error: Invalid number of arguments. Use 'add-address \"[fullname]\"'"
+            elif func.__name__ == "change_address":
+                return "Error: Invalid number of arguments. Use 'change-address \"[fullname]\"'"
+
+
         except KeyError:
             if func.__name__ in [
                     "show_phone", "add_birthday", "show_birthday", "add_address", "delete_address", "edit_name"
@@ -55,7 +61,7 @@ def input_error(func):
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."
             if func.__name__ in  ["add_email", "edit_email"]:
                 return "Error: Incorrect email format. Use example@example.com."
-            if func.__name__ in ["add-address", "change-address"]:
+            if func.__name__ in ["add_address", "change_address"]:
                 return f"Error: {e}"
         except ValueLengthError:
             if func.__name__ == "search_email":
