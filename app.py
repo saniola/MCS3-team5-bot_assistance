@@ -1,4 +1,4 @@
-from handlers import * as
+from handlers.handlers import handlers
 from models.adressbook import AddressBook
 from models.notes import Notes
 from utils.input_parser import parse_input
@@ -19,6 +19,8 @@ def app():
         else:
             continue
 
+        command = command.lower()
+
         if command in ["close", "exit"]:
             notes.save()
             contacts.save()
@@ -27,68 +29,68 @@ def app():
         elif command == "hello":
             print("How can I help you?")
         elif command == "add":
-            print(add_contact(args, contacts))
+            print(handlers["add_contact"](args, contacts))
         elif command == "change":
-            print(edit_contact(args, contacts))
+            print(handlers["edit_contact"](args, contacts))
         elif command == "change-name":
-            result = edit_name(args, contacts)
+            result = handlers["edit_name"](args, contacts)
             if type(result) != AddressBook:
                 print(result)
             else:
                 contacts = result
                 print(f"Contact {args[0]} updated. New contact name: {args[1]}.")
         elif command == "phone":
-            print(show_phone(args, contacts))
+            print(handlers["show_phone"](args, contacts))
         elif command == "all":
-            print(show_all(args, contacts))
+            print(handlers["show_all"](args, contacts))
         elif command == "add-birthday":
-            print(add_birthday(args, contacts))
+            print(handlers["add_birthday"](args, contacts))
         elif command == "change-birthday":
-            print(edit_birthday(args, contacts))
+            print(handlers["edit_birthday"](args, contacts))
         elif command == "show-birthday":
-            print(show_birthday(args, contacts))
+            print(handlers["show_birthday"](args, contacts))
         elif command == "birthdays":
-            print(birthdays(args, contacts))
+            print(handlers["birthdays"](args, contacts))
         elif command == "add-email":
-            print(add_email(args, contacts))
+            print(handlers["add_email"](args, contacts))
         elif command == "change-email":
-            print(edit_email(args, contacts))
+            print(handlers["edit_email"](args, contacts))
         elif command == "search-email":
-            print(search_email(args, contacts))
+            print(handlers["search_email"](args, contacts))
         elif command == "search":
-            print(search(args, contacts))
+            print(handlers["search"](args, contacts))
         elif command == "add-note":
-            print(add_note(args, notes))
+            print(handlers["add_note"](args, notes))
         elif command == "note-ls":
             print(str(notes))
         elif command == "edit-note-title":
-            print(edit_note_title(args, notes))
+            print(handlers["edit_note_title"](args, notes))
         elif command == "edit-note-text":
-            print(edit_note_text(args, notes))
+            print(handlers["edit_note_text"](args, notes))
         elif command == "add-tag-to-note":
-            print(add_tag_to_note(args, notes))
+            print(handlers["add_tag_to_note"](args, notes))
         elif command == "remove-tag-from-note":
-            print(delete_tag_from_note(args, notes))
+            print(handlers["delete_tag_from_note"](args, notes))
         elif command == "find-notes-by-title":
-            print(find_notes_by_title(args, notes))
+            print(handlers["find_notes_by_title"](args, notes))
         elif command == "find-notes-by-tags":
-            print(find_notes_by_tags(args, notes))
+            print(handlers["find_notes_by_tags"](args, notes))
         elif command == "sort-by-tag":
-            print(sort_by_tag(args, notes))
+            print(handlers["sort_by_tag"](args, notes))
         elif command == "remove-note-by-title":
-            print(delete_note_by_title(args, notes))
+            print(handlers["delete_note_by_title"](args, notes))
         elif command == "change-email":
-            print(edit_email(args, contacts))
+            print(handlers["edit_email"](args, contacts))
         elif command == "search-email":
-            print(search_email(args, contacts))
+            print(handlers["search_email"](args, contacts))
         elif command == "help":
-            print(help_info(args))
+            print(handlers["help_info"](args))
         elif command == "add-address":
-            print(add_address(args, contacts))
+            print(handlers["add_address"](args, contacts))
         elif command == "del-address":
-            print(delete_address(args, contacts))
+            print(handlers["delete_address"](args, contacts))
         elif command == "change-address":
-            print(edit_address(args, contacts))
+            print(handlers["edit_address"](args, contacts))
         elif command == "save":
             notes.save()
             contacts.save()
