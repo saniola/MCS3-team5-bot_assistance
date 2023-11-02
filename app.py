@@ -15,9 +15,13 @@ def app():
 
     while True:
         user_input = input("Enter a command: ")
-        command, args = parse_input(user_input)
+        if user_input:
+            command, args = parse_input(user_input)
+        else:
+            continue
 
         if command in ["close", "exit"]:
+            notes.save()
             contacts.save()
             print("Goodbye!")
             break
@@ -54,6 +58,8 @@ def app():
             print(handler.search_email(args, contacts))
         elif command == "add-note":
             print(handler.add_note(args, notes))
+        elif command == "note-ls":
+            print(str(notes))
         elif command == "edit-note-title":
             print(handler.edit_note_title(args, notes))
         elif command == "edit-note-text":
@@ -83,6 +89,8 @@ def app():
         elif command == "change-address":
             print(handler.change_address(args, contacts))
         elif command == "save":
-            print(contacts.save())
+            notes.save()
+            contacts.save()
+            print("-- Data Saved --")
         else:
             print("Invalid command. Use 'help' to see list of the exist commands ")

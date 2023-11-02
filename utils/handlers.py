@@ -185,7 +185,7 @@ def help_info(args):
     return get_help_commands()
 
 @input_error
-def add_note(args, notes: AddressBook):
+def add_note(args, notes: Notes):
     title, text, *tags = args
     title = title.title()
     notes.add_note(title, text, tags)
@@ -208,6 +208,7 @@ def edit_note_text(args, notes: Notes):
 
 @input_error
 def add_tag_to_note(args, notes: Notes):
+    '''Whating for title and tag'''
     title, tag = args
     title = title.title()
     notes.add_tag_to_note(title, tag)
@@ -249,6 +250,7 @@ def find_notes_by_tags(args, notes: Notes):
 
 @input_error
 def sort_by_tag(args, notes: Notes):
+    '''Waiting for tag'''
     tag = args[0]
     matching_notes = notes.sort_notes_by_tag(tag)
     if matching_notes:
@@ -258,6 +260,7 @@ def sort_by_tag(args, notes: Notes):
 
 @input_error
 def remove_note_by_title(args, notes: Notes):
+    '''Waiting for title'''
     title = args[0]
     if notes.remove_note_by_title(title):
         print(f"Note '{title}' removed.")

@@ -1,8 +1,25 @@
+import pickle
 from models.note import Note
 
+
 class Notes:
+    data_file_name = './data/note.bin'
+
     def __init__(self):
-        self.notes = []
+        try:
+            with open(Notes.data_file_name, 'rb') as fn:
+                data = pickle.load(fn)
+                self.notes = data
+        except FileNotFoundError:
+            self.notes = []
+
+    def __str__(self):
+        title = f'|{"Title":^20}|{"Text":^40}|{"Tags":^30}|\n'
+        title += f'|{"-"*20:^20}|{"-"*40:^40}|{"-"*30:^30}|\n'
+        for i in self.notes:
+            tags = str(i.tags).strip("[]")[:30]
+            title += f'|{i.title[:20]:<20}|{i.text[:40]:<40}|{tags:<30}|\n'
+        return title
 
     def add_note(self, title, text, tags=[]):
         note = Note(title, text, tags)
@@ -49,3 +66,7 @@ class Notes:
                 self.notes.remove(note)
                 return True
         return False
+
+    def save(self):
+        with open(Notes.data_file_name, 'wb') as fn:
+            pickle.dump(self.notes, fn)
