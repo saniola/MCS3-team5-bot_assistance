@@ -1,32 +1,36 @@
 import utils.handlers as handler
-import gnureadline as readline
+from prompt_toolkit import PromptSession
+from prompt_toolkit.completion import WordCompleter
+from prompt_toolkit.styles import Style
 from models.adressbook import AddressBook
 from models.notes import Notes
 from utils.input_parser import parse_input
 from utils.get_welcome_message import get_welcome_message
 from utils.get_help_commands import get_help_commands
 
-commands = ["change", "change-name", "change-email"]
-
-def complete(text, state):
-    options = [command for command in commands if command.startswith(text)]
-    if state < len(options):
-        return options[state]
-    else:
-        return None
-
 
 def app():
+    сustom_style = Style.from_dict({
+    'prompt': 'ansiblue',
+    'line': 'ansired',
+    'output': 'ansiyellow bg:ansiblack',
+})
+    commands = [
+        "change", "change-name", "change-email", "close", "exit", \
+        "hello", "all", "add-birthday", "add-note"
+        ]
+
     print(get_welcome_message())
     print(get_help_commands())
 
-    readline.set_completer(complete)
-    readline.parse_and_bind("tab: complete")
+    completer = WordCompleter(commands)
+    session = PromptSession(style = сustom_style)
+
     contacts = AddressBook()
     notes = Notes()
 
     while True:
-        user_input = input("Enter a command: ")
+        user_input = user_input = session.prompt("Enter a command: ", completer = completer)
         if user_input:
             command, args = parse_input(user_input)
         else:
