@@ -18,7 +18,7 @@ class Record:
             f"{', email: ' + self.email.value if self.email is not None else ''}"\
             f"{', birthday: ' + self.birthday.value if self.birthday is not None else ''}"\
             f"{', ' + str(self.address) if self.address is not None else ''}"
-        
+
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
 
@@ -48,20 +48,20 @@ class Record:
         if self.birthday:
             return f"Birthday for {self.name.value}: {self.birthday.value}"
         return f"No birthday set for {self.name.value}"
-    
-    def add_email(self, email):
-        self.email = Email(email)    
 
-    def change_email(self, email):
+    def add_email(self, email):
         self.email = Email(email)
 
-    def change_name(self, new_name):
+    def edit_email(self, email):
+        self.email = Email(email)
+
+    def edit_name(self, new_name):
         self.name.value = new_name
 
     def add_address(self, city) -> Address:
         self.address = Address(city)
         return self.address
-    
-    def del_address(self):
+
+    def delete_address(self):
         self.address = None
-        
+

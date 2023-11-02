@@ -43,7 +43,7 @@ class Notes:
                 note.add_tag(tag)
                 break
 
-    def remove_tag_from_note(self, title, tag):
+    def delete_tag_from_note(self, title, tag):
         for note in self.notes:
             if note.title == title:
                 note.remove_tag(tag)
@@ -60,7 +60,7 @@ class Notes:
         sorted_notes.sort(key=lambda x: x.title)
         return sorted_notes
 
-    def remove_note_by_title(self, title):
+    def delete_note_by_title(self, title):
         for note in self.notes:
             if note.title == title:
                 self.notes.remove(note)
