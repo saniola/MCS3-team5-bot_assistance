@@ -55,10 +55,15 @@ def app():
             print(handlers["add_email"](args, contacts))
         elif command == "edit-email":
             print(handlers["edit_email"](args, contacts))
-        elif command == "search-email":
-            print(handlers["search_email"](args, contacts))
         elif command == "search":
             print(handlers["search"](args, contacts))
+        elif command == "delete":
+            result = handlers["delete_record"](args, contacts)
+            if type(result) != AddressBook:
+                print(result)
+            else:
+                contacts = result
+                print(f"Contact {args[0]} was deleted.")
         elif command == "add-note":
             print(handlers["add_note"](args, notes))
         elif command == "show_notes":
@@ -81,8 +86,6 @@ def app():
             print(handlers["delete_note_by_title"](args, notes))
         elif command == "edit-email":
             print(handlers["edit_email"](args, contacts))
-        elif command == "search-email":
-            print(handlers["search_email"](args, contacts))
         elif command == "help":
             print(handlers["help_info"](args))
         elif command == "add-address":
