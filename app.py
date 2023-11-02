@@ -66,8 +66,10 @@ def app():
                 print(f"Contact {args[0]} was deleted.")
         elif command == "add-note":
             print(handlers["add_note"](args, notes))
-        elif command == "show_notes":
+        elif command == "show-notes":
             print(str(notes))
+        elif command == "show-tags":
+            print(notes.get_unique_tags())
         elif command == "edit-note-title":
             print(handlers["edit_note_title"](args, notes))
         elif command == "edit-note-text":
