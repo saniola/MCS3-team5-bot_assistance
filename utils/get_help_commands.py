@@ -20,8 +20,8 @@ def get_help_commands():
     - note [name] or [tag]:
     - add_tag [note_name] [tag_name]:
     - add_address "[fullname]": Starts the instruction of address adding for specified contact
-    - change_address "[fullname]": Starts the instruction of address changing for specified contact
-    - del_address "[fullname]": Delete the contact address
+    - edit_address "[fullname]": Starts the instruction of address changing for specified contact
+    - delete_address "[fullname]": Delete the contact address
     - close or exit: Close and save the program.
     - save: Save all data.
 '''
