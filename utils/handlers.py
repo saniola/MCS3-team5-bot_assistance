@@ -6,6 +6,8 @@ from models.adressbook import AddressBook
 from models.notes import Notes
 from models.record import Record
 from utils.get_help_commands import get_help_commands
+from utils.search_digits import search_by_digits
+from utils.search_letters import search_by_letters
 
 
 @input_error
@@ -18,7 +20,6 @@ def add_contact(args, contacts: AddressBook):
             record.add_phone(phone)
         else:
             raise DoubleKeyError(record, name)
-        
     else:
         record: Record = Record(name)
         record.add_phone(phone)
@@ -176,6 +177,26 @@ def search_email(args, contacts: AddressBook):
         return result.removesuffix('\n')
     else:
         raise NotFoundError('email')
+
+@input_error
+def search(args, contacts: AddressBook):
+    if len(args) != 1:
+        raise ValueError
+    
+    search_string = args[0].lower()
+    if len(search_string) < 2:
+        raise ValueLengthError
+    
+    result = ''
+    if search_string.isdigit():
+       result = search_by_digits(search_string, contacts)
+    else:
+        result = search_by_letters(search_string, contacts)
+
+    if result != '':
+        return result.removesuffix('\n')
+    else:
+        raise NotFoundError()
 
 @input_error
 def help_info(args):

@@ -56,6 +56,8 @@ def app():
             print(handler.change_email(args, contacts))
         elif command == "search-email":
             print(handler.search_email(args, contacts))
+        elif command == "search":
+            print(handler.search(args, contacts))
         elif command == "add-note":
             print(handler.add_note(args, notes))
         elif command == "note-ls":
