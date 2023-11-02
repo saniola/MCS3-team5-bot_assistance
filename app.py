@@ -28,9 +28,9 @@ def app():
             break
         elif command == "hello":
             print("How can I help you?")
-        elif command == "add":
+        elif command == "add-contact":
             print(handlers["add_contact"](args, contacts))
-        elif command == "edit":
+        elif command == "edit-contact":
             print(handlers["edit_contact"](args, contacts))
         elif command == "edit-name":
             result = handlers["edit_name"](args, contacts)
@@ -39,9 +39,9 @@ def app():
             else:
                 contacts = result
                 print(f"Contact {args[0]} updated. New contact name: {args[1]}.")
-        elif command == "phone":
+        elif command == "show-phone":
             print(handlers["show_phone"](args, contacts))
-        elif command == "all":
+        elif command == "show-contacts":
             print(handlers["show_all"](args, contacts))
         elif command == "add-birthday":
             print(handlers["add_birthday"](args, contacts))
@@ -66,7 +66,7 @@ def app():
                 print(f"Contact {args[0]} was deleted.")
         elif command == "add-note":
             print(handlers["add_note"](args, notes))
-        elif command == "note-ls":
+        elif command == "show_notes":
             print(str(notes))
         elif command == "edit-note-title":
             print(handlers["edit_note_title"](args, notes))
@@ -74,7 +74,7 @@ def app():
             print(handlers["edit_note_text"](args, notes))
         elif command == "add-tag-to-note":
             print(handlers["add_tag_to_note"](args, notes))
-        elif command == "remove-tag-from-note":
+        elif command == "delete-tag-from-note":
             print(handlers["delete_tag_from_note"](args, notes))
         elif command == "find-notes-by-title":
             print(handlers["find_notes_by_title"](args, notes))
@@ -82,7 +82,7 @@ def app():
             print(handlers["find_notes_by_tags"](args, notes))
         elif command == "sort-by-tag":
             print(handlers["sort_by_tag"](args, notes))
-        elif command == "remove-note-by-title":
+        elif command == "delete-note-by-title":
             print(handlers["delete_note_by_title"](args, notes))
         elif command == "edit-email":
             print(handlers["edit_email"](args, contacts))
@@ -90,7 +90,7 @@ def app():
             print(handlers["help_info"](args))
         elif command == "add-address":
             print(handlers["add_address"](args, contacts))
-        elif command == "del-address":
+        elif command == "delete-address":
             print(handlers["delete_address"](args, contacts))
         elif command == "edit-address":
             print(handlers["edit_address"](args, contacts))
