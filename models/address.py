@@ -11,7 +11,7 @@ class Address():
         if len(street) <= 1:
             raise TypeError("street should have more than one letter")
         self.street = street
-        
+
     def set_house(self, house: str):
         if self.street is None:
             raise TypeError("street have to be not empty")
