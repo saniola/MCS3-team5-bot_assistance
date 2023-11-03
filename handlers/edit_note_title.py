@@ -3,6 +3,8 @@ from models.notes import Notes
 
 @input_error
 def edit_note_title(args, notes: Notes):
+    if len(args) != 2:
+        raise ValueError
     old_title, new_title = args
     old_title = old_title.title()
     new_title = new_title.title()

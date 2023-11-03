@@ -3,6 +3,8 @@ from models.notes import Notes
 
 @input_error
 def find_notes_by_title(args, notes: Notes):
+    if len(args) != 1:
+        raise ValueError
     title = args[0]
     title = title.title()
     matching_notes = notes.find_notes_by_title(title)

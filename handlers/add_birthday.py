@@ -3,6 +3,8 @@ from models.adressbook import AddressBook
 
 @input_error
 def add_birthday(args, contacts: AddressBook):
+    if len(args) != 2:
+        raise ValueError
     name, birthday = args
 
     if name in contacts:

@@ -36,7 +36,7 @@ def app():
             print(handlers["edit_phone"](args, contacts))
         elif command == "edit-name":
             result = handlers["edit_name"](args, contacts)
-            if type(result) != AddressBook:
+            if not isinstance(result, AddressBook):
                 print(result)
             else:
                 contacts = result
@@ -46,7 +46,7 @@ def app():
         elif command == "show-contacts":
             print(handlers["show_all"](args, contacts))
         elif command == "add-birthday":
-            print(handlers["add-birthday"](args, contacts))
+            print(handlers["add_birthday"](args, contacts))
         elif command == "edit-birthday":
             print(handlers["edit_birthday"](args, contacts))
         elif command == "show-birthday":
@@ -61,7 +61,7 @@ def app():
             print(handlers["search"](args, contacts))
         elif command == "delete-contact":
             result = handlers["delete_record"](args, contacts)
-            if type(result) != AddressBook:
+            if not isinstance(result, AddressBook):
                 print(result)
             else:
                 contacts = result
@@ -88,10 +88,8 @@ def app():
             print(handlers["sort_by_tag"](args, notes))
         elif command == "delete-note-by-title":
             print(handlers["delete_note_by_title"](args, notes))
-        elif command == "edit-email":
-            print(handlers["edit_email"](args, contacts))
         elif command == "help":
-            print(handlers["help_info"](args))
+            print(handlers["help_info"]())
         elif command == "add-address":
             print(handlers["add_address"](args, contacts))
         elif command == "delete-address":
