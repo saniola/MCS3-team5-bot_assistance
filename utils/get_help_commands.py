@@ -1,29 +1,28 @@
 def get_help_commands():
     return '''
-    - help: to get this list
-    - hello: Get a greeting from the bot.
-    - add [name] [surname](optional) [parentname](optional) [phone]: Add a new contact with a name and phone number.
-    - change [fullname] [old phone] [new phone]: Change the phone number for a specified contact.
-    - phone [fullname]: Show the phone number for a specified contact.
-    - all: Show all contacts in the address book.
-    - search-contact [>2 letters or >2 numbers]: Get list of contacts
-    - delete-contact [name]: Delete specific contact from list
-    - add-birthday [fullname] [birth date]: Add a date of birth for a specified contact.
-    - show-birthday [fullname]: Show the date of birth for a specified contact.
-    - birthdays [number](optional): Show birthdays that will occur in the period of days passed as parameter. By default used 7 days.
-    - add-note [name]: Add new note
-    - change-note [name]: Change text of specific note
-    - change-note-name [name]: Change name of specific note
-    - delete-note [name]: Delete specific note
-    - search-note [name or tag]: Get list of notes
-    - sort-note [tag]:
-    - note [name] or [tag]:
-    - add_tag [note_name] [tag_name]: Adds tag to the note
-    - show_tag: Shows all tags.
-    - shwo_tag: Shows all notes.
-    - add_address "[fullname]": Starts the instruction of address adding for specified contact
-    - edit_address "[fullname]": Starts the instruction of address changing for specified contact
-    - delete_address "[fullname]": Delete the contact address
-    - close or exit: Close and save the program.
-    - save: Save all data.
+    - add-address "[fullname]": Starts the instruction of address adding for specified contact
+    - add-birthday "[fullname]" [birth date]: Add a date of birth for a specified contact.
+    - add-contact "[name] [surname](optional) [parentname](optional)" [phone]: Add a new contact with a name and phone number.
+    - add-email "[fullname]" [email]: Add email for selected user
+    - add-note "[note]" [text] [tags](optional): Add new text note with tags
+    - add-tag-to-note "[note]" [tag]: Add tag to selected note
+    - birthdays [period](default=7 days): Show birthdays that will occur in the period of days passed as parameter. By default used 7 days.
+    - delete-address "[fullname]": Delete the contact address
+    - delete-note-by-title "[note]": Delete specific note
+    - delete-contact "[fullname]": Delete contact
+    - delete-tag-from-note "[note]" [tag]: Delete tag from note
+    - edit-address "[fullname]": Starts the instruction of address changing for specified contact
+    - edit-birthday "[fullname]": Change birthday for specific contact
+    - edit-email "[fullname]" [new email]: Change email for specific contact
+    - edit-name "[fullname]" "[new fullname]": Change name for specific contact
+    - edit-note-text "[note]" "[new text]": Change text for the note
+    - edit-note-title "[note]" "[new note name]": Change note name
+    - edit-phone "[fullname]" [old phone] [new phone]: Change the phone number for a specified contact.
+    - find-notes-by-tags [tags]: Find notes by tags
+    - find-notes-by-title "[note]": Find notes by title
+    - help: Get this list of commands
+    - search [value]: Can search by phone, name, email etc.
+    - show-contacts: Show all contacts
+    - sort-by-tag [tag]: Sort notes by tag
+    - close or exit: Close the program.
 '''
