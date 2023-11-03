@@ -11,7 +11,7 @@ def input_error(func):
             if func.__name__ == "add_contact":
                 return "Error: Invalid number of arguments. " \
                 "Use 'add \"[name] [surname](optional) [parentname](optional)\" [phone number]'."
-            elif func.__name__ == "edit_contact":
+            elif func.__name__ == "edit_phone":
                 return "Error: Invalid number of arguments. "\
                 "Use 'change \"[fullname]\" [old phone number] [new phone number]'."
             elif func.__name__ == "edit_name":
@@ -44,7 +44,7 @@ def input_error(func):
                 "Use 'change-address \"[fullname]\"'"
             elif func.__name__ == "birthdays":
                 return "Error: Invalid prompt. Use 'birthdais [number of days]'."
-            
+
         except KeyError:
             if func.__name__ in [
                     "show_phone", "add_birthday", "show_birthday", "add_address",
@@ -60,14 +60,14 @@ def input_error(func):
                 return f"Error: Contact with name {record[0]} not found in the record."
             if func.__name__ == "show_all":
                 return "Error: The contacts list is empty."
-            if func.__name__ == "edit_contact":
+            if func.__name__ == "edit_phone":
                 phone = args[1]
                 return f"Error: Phone {phone} not found in the record."
             if func.__name__ == "birthdays":
                 return "Error: There are no birthdays in the list of contacts"
 
         except TypeError as e:
-            if func.__name__ in ["edit_contact", "add_contact"]:
+            if func.__name__ in ["edit_phone", "add_contact"]:
                 return "Error: The phone number must be 10 digits"
             if func.__name__ in ["add_birthday", 'edit_birthday']:
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."

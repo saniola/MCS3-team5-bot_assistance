@@ -10,7 +10,7 @@ from handlers.delete_note_by_title import delete_note_by_title
 from handlers.delete_tag_from_note import delete_tag_from_note
 from handlers.edit_address import edit_address
 from handlers.edit_birthday import edit_birthday
-from handlers.edit_contact import edit_contact
+from handlers.edit_phone import edit_phone
 from handlers.edit_email import edit_email
 from handlers.edit_name import edit_name
 from handlers.edit_note_text import edit_note_text
@@ -39,7 +39,7 @@ handlers = {
     "delete_tag_from_note": delete_tag_from_note,
     "edit_address": edit_address,
     "edit_birthday": edit_birthday,
-    "edit_contact": edit_contact,
+    "edit_phone": edit_phone,
     "edit_email": edit_email,
     "edit_name": edit_name,
     "edit_note_text": edit_note_text,

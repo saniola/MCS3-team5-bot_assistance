@@ -3,7 +3,7 @@ from models.adressbook import AddressBook
 from models.record import Record
 
 @input_error
-def edit_contact(args, contacts: AddressBook):
+def edit_phone(args, contacts: AddressBook):
     name, old_phone, new_phone = args
 
     if name in contacts:

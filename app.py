@@ -18,7 +18,7 @@ def app():
         "change", "change-name", "change-email", "close", "exit", \
         "hello", "all", "add-birthday", "add-note", "add","phone", \
         "show-birthday", "birthday", "add-email", "search", "search-email", \
-        "note-ls", "edit--note-title", "edit-note-text","add-tag-to-note", \
+        "note-ls", "edit-note-title", "edit-note-text","add-tag-to-note", \
         "remove-tag-from-note","find-notes-by-title",'find-notes-by-tags', \
         "sort-by-tag", "help", "add-adress", "del-address", "change-address", \
         "save","delete-note", "change-note-name", "change-note"
@@ -51,8 +51,8 @@ def app():
             print("How can I help you?")
         elif command == "add-contact":
             print(handlers["add_contact"](args, contacts))
-        elif command == "edit-contact":
-            print(handlers["edit_contact"](args, contacts))
+        elif command == "edit-phone":
+            print(handlers["edit_phone"](args, contacts))
         elif command == "edit-name":
             result = handlers["edit_name"](args, contacts)
             if type(result) != AddressBook:
@@ -78,7 +78,7 @@ def app():
             print(handlers["edit_email"](args, contacts))
         elif command == "search":
             print(handlers["search"](args, contacts))
-        elif command == "delete":
+        elif command == "delete-contact":
             result = handlers["delete_record"](args, contacts)
             if type(result) != AddressBook:
                 print(result)
