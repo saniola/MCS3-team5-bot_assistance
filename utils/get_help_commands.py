@@ -18,7 +18,9 @@ def get_help_commands():
     - search-note [name or tag]: Get list of notes
     - sort-note [tag]:
     - note [name] or [tag]:
-    - add_tag [note_name] [tag_name]:
+    - add_tag [note_name] [tag_name]: Adds tag to the note
+    - show_tag: Shows all tags.
+    - shwo_tag: Shows all notes.
     - add_address "[fullname]": Starts the instruction of address adding for specified contact
     - edit_address "[fullname]": Starts the instruction of address changing for specified contact
     - delete_address "[fullname]": Delete the contact address
