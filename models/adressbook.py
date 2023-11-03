@@ -23,10 +23,9 @@ class AddressBook(UserDict):
         if name in self.data:
             del self.data[name]
 
-    def get_birthdays_per_week(self):
+    def get_birthdays_per_week(self, days):
         birthdays_per_week = defaultdict(list)
-        get_next_week_birthdays(self.data, birthdays_per_week)
-        return print_results(birthdays_per_week)
+        return get_next_week_birthdays(self.data, birthdays_per_week, days)
     
     def save(self):
         with open(AddressBook.data_file_name, 'wb') as fn:

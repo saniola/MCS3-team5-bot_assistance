@@ -16,7 +16,7 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'change-name \"[fullname]\" \"[new fullname]\"'."
             elif func.__name__ == "show_phone":
                 return "Error: Invalid number of arguments. Use 'phone \"[fullname]\"'."
-            elif func.__name__ in ["show_all", "birthdays", "help"]:
+            elif func.__name__ in ["show_all", "help"]:
                 return "Error: Use without arguments."
             elif func.__name__ in  ["add_birthday", 'edit_birthday']:
                 return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\" [birth date]'"
@@ -28,6 +28,8 @@ def input_error(func):
                 return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [new email]'."
             elif func.__name__ == "delete_record":
                 return "Error: Invalid number of arguments. Use 'delete \"[fullname]\"'"
+            elif func.__name__ == "birthdays":
+                return "Error: Invalid prompt. Use 'birthdais [number of days]'."
         except KeyError:
             if func.__name__ in [
                     "show_phone", "add_birthday", "show_birthday", "add_address", "delete_address", "edit_name", "delete_record"
