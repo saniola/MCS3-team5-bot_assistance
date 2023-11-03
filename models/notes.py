@@ -14,11 +14,10 @@ class Notes:
             self.notes = []
 
     def __str__(self):
-        title = f'|{"Title":^20}|{"Text":^40}|{"Tags":^30}|\n'
-        title += f'|{"-"*20:^20}|{"-"*40:^40}|{"-"*30:^30}|\n'
+        title = f'|{"Title":^30}|\n'
+        title += f'|{"-"*30:^30}|\n'
         for i in self.notes:
-            tags = str(i.tags).strip("[]")[:30]
-            title += f'|{i.title[:20]:<20}|{i.text[:40]:<40}|{tags:<30}|\n'
+            title += f'|{i.title[:30]:^30}|\n'
         return title
 
     def add_note(self, title, text, tags=[]):
@@ -43,7 +42,7 @@ class Notes:
                 note.add_tag(tag)
                 break
 
-    def remove_tag_from_note(self, title, tag):
+    def delete_tag_from_note(self, title, tag):
         for note in self.notes:
             if note.title == title:
                 note.remove_tag(tag)
@@ -60,7 +59,7 @@ class Notes:
         sorted_notes.sort(key=lambda x: x.title)
         return sorted_notes
 
-    def remove_note_by_title(self, title):
+    def delete_note_by_title(self, title):
         for note in self.notes:
             if note.title == title:
                 self.notes.remove(note)
@@ -70,3 +69,13 @@ class Notes:
     def save(self):
         with open(Notes.data_file_name, 'wb') as fn:
             pickle.dump(self.notes, fn)
+
+    def get_unique_tags(self):
+        tags = set()
+        for note in self.notes:
+            note: Note
+            for tag in note.tags:
+                tags.add(tag)
+
+        return str(tags).strip("{").strip("}")
+    

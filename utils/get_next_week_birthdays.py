@@ -1,11 +1,12 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 from utils.get_today import get_today
 
-def get_next_week_birthdays(address_book, birthdays_per_week):
+def get_next_week_birthdays(address_book, birthdays_per_week,days):
     today = get_today()
     today_datetime = datetime(today.year, today.month, today.day)
     users = address_book.values()
 
+    birthday_list = "\n"
     for user in users:
         if user.birthday:
             name = user.name.value
@@ -13,11 +14,9 @@ def get_next_week_birthdays(address_book, birthdays_per_week):
             birthday_this_year = birthday.replace(year=today.year)
             delta_days = (birthday_this_year - today_datetime).days
 
-            if 0 <= delta_days <= 6:
-                if birthday_this_year.weekday() == 5:
-                    delta_days += 2
-                elif birthday_this_year.weekday() == 6:
-                    delta_days += 1
+            if delta_days <= int(days):
+                birthday_list += f"{user.birthday}: {name} Залишилось до дня народження: {delta_days}\n"
+            
 
-                birthday_weekday = (today_datetime + timedelta(days=delta_days)).strftime("%A")
-                birthdays_per_week[birthday_weekday].append(name)
+     
+    return birthday_list
