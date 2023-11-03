@@ -1,40 +1,21 @@
-from prompt_toolkit import PromptSession
-from prompt_toolkit.completion import WordCompleter
-from prompt_toolkit.styles import Style
 from handlers.handlers import handlers
 from models.adressbook import AddressBook
 from models.notes import Notes
+from utils.commands_completer import commands_completer
 from utils.input_parser import parse_input
 from utils.get_welcome_message import get_welcome_message
 from utils.get_help_commands import get_help_commands
 
 def app():
-    сustom_style = Style.from_dict({
-    'prompt': 'ansiblue',
-    'line': 'ansired',
-    'output': 'ansiyellow bg:ansiblack',
-})
-    commands = [
-        "change", "change-name", "change-email", "close", "exit", \
-        "hello", "all", "add-birthday", "add-note", "add","phone", \
-        "show-birthday", "birthday", "add-email", "search", "search-email", \
-        "note-ls", "edit-note-title", "edit-note-text","add-tag-to-note", \
-        "remove-tag-from-note","find-notes-by-title",'find-notes-by-tags', \
-        "sort-by-tag", "help", "add-adress", "del-address", "change-address", \
-        "save","delete-note", "change-note-name", "change-note"
-        ]
-
     print(get_welcome_message())
     print(get_help_commands())
-
-    completer = WordCompleter(commands)
-    session = PromptSession(style = сustom_style)
 
     contacts = AddressBook()
     notes = Notes()
 
     while True:
-        user_input = user_input = session.prompt("Enter a command: ", completer = completer)
+        user_input = commands_completer()
+
         if user_input:
             command, args = parse_input(user_input)
         else:
