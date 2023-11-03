@@ -3,13 +3,13 @@
 The given team project is the final assignment for a group of developers in Python for GoIT Neoversity as part of the Tier 1 course "Python Programming: Foundations and Best Practices."
 
 ## Team of Collaborators
-  Oleksandr Kydanov [saniola](https://github.com/saniola)\n
+  Oleksandr Kydanov [saniola](https://github.com/saniola)
 
-  Karpenko Nataliia [Netaly79](https://github.com/Netaly79)\n
+  Karpenko Nataliia [Netaly79](https://github.com/Netaly79)
 
-  Serhii Dzhulai [Brigant](https://github.com/Brigant)\n
+  Serhii Dzhulai [Brigant](https://github.com/Brigant)
 
-  Ivan Diabin [guzz](https://github.com/guzzgrey)\n
+  Ivan Diabin [guzz](https://github.com/guzzgrey)
 
 ***Personal Assistant - Contact Book and Notes Application***
 
