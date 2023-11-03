@@ -23,6 +23,10 @@ def get_help_commands():
     - help: Get this list of commands
     - search [value]: Can search by phone, name, email etc.
     - show-contacts: Show all contacts
+    - show-birthday "[fullname]": Show contact birthday
+    - show-notes: Show all notes
+    - show-phone "[fullname]": Show phone of specific contact
+    - show-tags: Show all tags
     - sort-by-tag [tag]: Sort notes by tag
     - close or exit: Close the program.
 '''
