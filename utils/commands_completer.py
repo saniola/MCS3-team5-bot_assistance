@@ -3,14 +3,13 @@ from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
 
 commands = [
-    "change", "change-name", "change-email", "close", "exit", \
-    "hello", "all", "add-birthday", "add-note", "add","phone", \
-    "show-birthday", "birthday", "add-email", "search", "search-email", \
-    "note-ls", "edit-note-title", "edit-note-text","add-tag-to-note", \
-    "remove-tag-from-note","find-notes-by-title",'find-notes-by-tags', \
-    "sort-by-tag", "help", "add-adress", "del-address", "change-address", \
-    "save","delete-note", "change-note-name", "change-note"
-    ]
+    "hello","add-contact", "edit-phone", "show-contacts", "edit-name", "show-phone", "add-birthday"\
+    "edit-birthday", "show-birthday", "birthdays", "add-email", "edit-email", "search"\
+    "delete-contact", "add-note", "show-notes", "show-tags", "edit-note-title", "edit-note-text",\
+    "edit-note-title", "edit-node-text", "add-tag-to-note", "delete-tag-to-note", "find-notes-by-title",\
+    "find-notes-by-tags", "sort-by-tag", "delete-note-by-title", "help", "add-address", "delete-address",\
+    "edit-address", "save"
+]
 
 def commands_completer():
     custom_style = Style.from_dict({

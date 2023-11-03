@@ -73,6 +73,10 @@ The following commands are supported by the bot:
 - `help`: Get this list of commands
 - `search [value]`: Can search by phone, name, email etc.
 - `show-contacts`: Show all contacts
+- `show-birthday "[fullname]"`: Show contact birthday
+- `show-notes`: Show all notes
+- `show-phone "[fullname]"`: Show phone of specific contact
+- `show-tags`: Show all tags
 - `sort-by-tag [tag]`: Sort notes by tag
 - `close` or `exit`: Close the program.
 
