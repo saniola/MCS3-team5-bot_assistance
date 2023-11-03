@@ -24,6 +24,7 @@ from handlers.show_all import show_all
 from handlers.show_birthday import show_birthday
 from handlers.show_phone import show_phone
 from handlers.sort_by_tag import sort_by_tag
+from handlers.delete_record import delete_record
 
 
 handlers = {
@@ -36,6 +37,7 @@ handlers = {
     "birthdays": birthdays,
     "delete_address": delete_address,
     "delete_note_by_title": delete_note_by_title,
+    "delete_record": delete_record,
     "delete_tag_from_note": delete_tag_from_note,
     "edit_address": edit_address,
     "edit_birthday": edit_birthday,

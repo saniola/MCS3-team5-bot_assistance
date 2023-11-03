@@ -32,5 +32,4 @@ class Address():
         return f"city: {self.city}"\
          f"{', street: '+self.street if self.street is not None else ''}"\
          f"{', house: '+self.house if self.house is not None else ''}"\
-         f"{', apartment: '+self.apartment if self.apartment is not None else ''}\n"
-        
+         f"{', apartment: '+self.apartment if self.apartment is not None else ''}"

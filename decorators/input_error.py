@@ -44,6 +44,23 @@ def input_error(func):
                 "Use 'change-address \"[fullname]\"'"
             elif func.__name__ == "birthdays":
                 return "Error: Invalid prompt. Use 'birthdais [number of days]'."
+            elif func.__name__ == "search":
+                return "Error: Invalid prompt. Use 'search [args more then 2 symbols]'."
+            elif func.__name__ == "add_note":
+                return "Error: Invalid prompt. Use 'add_note [Title] [Text] tag1 ... tagN'."
+            elif func.__name__ == "edit_note_title":
+                return "Error: Invalid prompt. Use 'edit-note-title [OldTitle] [NewTilte]."
+            elif func.__name__ == "find_notes_by_title":
+                return "Error: Invalid prompt. Use 'find-notes-by-title [Title]."
+            elif func.__name__ == "sort_by_tag":
+                return "Error: Invalid prompt. Use 'sort-by-tag [Tag]."
+            elif func.__name__ == "delete_note_by_title":
+                return "Error: Invalid prompt. Use 'delete-note-by-title [Tilte]."
+            elif func.__name__ == "delete_address":
+                return "Error: Invalid prompt. Use 'delete-address [ContactName]."
+            elif func.__name__ == "edit_address":
+                return "Error: Invalid prompt. Use 'edit-address [ContactName]."
+
 
         except KeyError:
             if func.__name__ in [

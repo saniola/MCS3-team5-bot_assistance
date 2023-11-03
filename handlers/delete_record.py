@@ -1,4 +1,4 @@
-from decorators import input_error
+from decorators.input_error import input_error
 from models.adressbook import AddressBook
 from models.record import Record
 
@@ -8,7 +8,7 @@ def delete_record(args, contacts: AddressBook):
     if  len(args) != 1:
         raise ValueError
     name = args[0]
-    
+
     temp_contacts = AddressBook()
     if name in contacts:
         for key in contacts.keys():

@@ -16,7 +16,7 @@ def search(args, contacts: AddressBook):
 
     result = ''
     if search_string.isdigit():
-       result = search_by_digits(search_string, contacts)
+        result = search_by_digits(search_string, contacts)
     else:
         result = search_by_letters(search_string, contacts)
 
