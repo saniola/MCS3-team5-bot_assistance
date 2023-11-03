@@ -44,7 +44,7 @@ def app():
         elif command == "show-contacts":
             print(handlers["show_all"](args, contacts))
         elif command == "add-birthday":
-            print(handlers["add_birthday"](args, contacts))
+            print(handlers["add-birthday"](args, contacts))
         elif command == "edit-birthday":
             print(handlers["edit_birthday"](args, contacts))
         elif command == "show-birthday":

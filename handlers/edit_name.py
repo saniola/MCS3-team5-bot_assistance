@@ -20,6 +20,7 @@ def edit_name(args, contacts: AddressBook):
             if record.name.value == name:
                 record.edit_name(new_name)
             temp_contacts.add_record(record)
+        temp_contacts.delete(name)
         return temp_contacts
     else:
         raise KeyError
