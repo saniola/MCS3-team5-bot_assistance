@@ -8,7 +8,7 @@ def parse_input(user_input) -> tuple[str, list()]:
     """
 
     lexer = shlex(user_input, posix=True)
-    lexer.quotes = '"'
+    lexer.quotes = '"\''
     lexer.whitespace_split = True
     cmd, *args = list(lexer)
 

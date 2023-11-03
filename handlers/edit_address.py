@@ -7,7 +7,10 @@ from models.adressbook import AddressBook
 def edit_address(args, contacts: AddressBook):
     if len(args) != 1:
         raise ValueError("change-address")
-    delete_address(args, contacts)
-    add_address(args, contacts)
+    if args[0] in contacts:
+        delete_address(args, contacts)
+        add_address(args, contacts)
+        return  f"Address changed for {args[0]}."
+    else:
+        raise KeyError
 
-    return f"Address changed for {args[0]}."

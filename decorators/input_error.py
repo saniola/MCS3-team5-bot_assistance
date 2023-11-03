@@ -9,30 +9,46 @@ def input_error(func):
             return func(*args, **kwargs)
         except ValueError:
             if func.__name__ == "add_contact":
-                return "Error: Invalid number of arguments. Use 'add \"[name] [surname](optional) [parentname](optional)\" [phone number]'."
+                return "Error: Invalid number of arguments. " \
+                "Use 'add \"[name] [surname](optional) [parentname](optional)\" [phone number]'."
             elif func.__name__ == "edit_contact":
-                return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [old phone number] [new phone number]'."
+                return "Error: Invalid number of arguments. "\
+                "Use 'change \"[fullname]\" [old phone number] [new phone number]'."
             elif func.__name__ == "edit_name":
-                return "Error: Invalid number of arguments. Use 'change-name \"[fullname]\" \"[new fullname]\"'."
+                return "Error: Invalid number of arguments. "\
+                "Use 'change-name \"[fullname]\" \"[new fullname]\"'."
             elif func.__name__ == "show_phone":
                 return "Error: Invalid number of arguments. Use 'phone \"[fullname]\"'."
             elif func.__name__ in ["show_all", "help"]:
                 return "Error: Use without arguments."
             elif func.__name__ in  ["add_birthday", 'edit_birthday']:
-                return "Error: Invalid number of arguments. Use 'add-birthday \"[fullname]\" [birth date]'"
+                return "Error: Invalid number of arguments. "\
+                "Use 'add-birthday \"[fullname]\" [birth date]'"
             elif func.__name__ == "show_birthday":
-                return "Error: Invalid number of arguments. Use 'show-birthday \"[fullname]\"'"
+                return "Error: Invalid number of arguments. "\
+                "Use 'show-birthday \"[fullname]\"'"
             elif func.__name__ == "add_email":
-                return "Error: Invalid number of arguments. Use 'add-email \"[fullname]\" [email]'"
+                return "Error: Invalid number of arguments. "\
+                "Use 'add-email \"[fullname]\" [email]'"
             elif func.__name__ == "edit_email":
-                return "Error: Invalid number of arguments. Use 'change \"[fullname]\" [new email]'."
+                return "Error: Invalid number of arguments. "\
+                "Use 'change \"[fullname]\" [new email]'."
             elif func.__name__ == "delete_record":
-                return "Error: Invalid number of arguments. Use 'delete \"[fullname]\"'"
+                return "Error: Invalid number of arguments. "\
+                "Use 'delete \"[fullname]\"'"
+            elif func.__name__ == "add_address":
+                return "Error: Invalid number of arguments. "\
+                "Use 'add-address \"[fullname]\"'"
+            elif func.__name__ == "change_address":
+                return "Error: Invalid number of arguments. "\
+                "Use 'change-address \"[fullname]\"'"
             elif func.__name__ == "birthdays":
                 return "Error: Invalid prompt. Use 'birthdais [number of days]'."
+            
         except KeyError:
             if func.__name__ in [
-                    "show_phone", "add_birthday", "show_birthday", "add_address", "delete_address", "edit_name", "delete_record"
+                    "show_phone", "add_birthday", "show_birthday", "add_address",
+                    "edit_address", "delete_address", "edit_name"
                     ]:
                 name = args[0]
                 return f"Error: Contact with name {name} not found."
@@ -57,12 +73,14 @@ def input_error(func):
                 return "Error: Incorrect birthday date format. Use DD.MM.YYYY."
             if func.__name__ in  ["add_email", "edit_email"]:
                 return "Error: Incorrect email format. Use example@example.com."
-            if func.__name__ in ["add-address", "change-address"]:
+            if func.__name__ in ["add_address", "change_address"]:
                 return f"Error: {e}"
+
         except ValueLengthError:
             return ValueLengthError.message
         except NotFoundError as e:
             return "Error: " + e.message
         except DoubleKeyError as e:
             return "Error: " + e.message
+
     return inner

@@ -4,14 +4,14 @@ from models.adressbook import AddressBook
 @input_error
 def add_address(args, contacts: AddressBook):
     if len(args) != 1:
-        raise ValueError("add-address")
+        raise ValueError
     name = args[0]
     if name in contacts:
         record = contacts[name]
         while True:
             city = input("Enter a city or leave it blank to stop: ")
             if not city:
-                break
+                return "Address NOT added."
             try:
                 adr = record.add_address(city)
             except TypeError as e:
@@ -26,10 +26,11 @@ def add_address(args, contacts: AddressBook):
                 if not house:
                     break
                 adr.set_house(house)
-                appartment = input("Enter appartment or leave it blank to stop: ")
-                if not appartment:
+                apartment = input("Enter apartment or leave it blank to stop: ")
+                if not apartment:
                     break
-                adr.set_appartment(appartment)
+                adr.set_apartment(apartment)
+                break
 
         return f"Address added for {name}."
     else:
