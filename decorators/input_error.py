@@ -33,9 +33,9 @@ def input_error(func):
             elif func.__name__ == "edit_email":
                 return "Error: Invalid number of arguments. "\
                 "Use 'change \"[fullname]\" [new email]'."
-            elif func.__name__ == "search_email":
+            elif func.__name__ == "delete_record":
                 return "Error: Invalid number of arguments. "\
-                "Use 'search-email [search_string]'"
+                "Use 'delete \"[fullname]\"'"
             elif func.__name__ == "add_address":
                 return "Error: Invalid number of arguments. "\
                 "Use 'add-address \"[fullname]\"'"
@@ -76,8 +76,7 @@ def input_error(func):
                 return f"Error: {e}"
 
         except ValueLengthError:
-            if func.__name__ == "search_email":
-                return ValueLengthError.message
+            return ValueLengthError.message
         except NotFoundError as e:
             return "Error: " + e.message
         except DoubleKeyError as e:
