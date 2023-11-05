@@ -1,6 +1,6 @@
 import pickle
 from collections import UserDict, defaultdict
-from utils.get_next_week_birthdays import get_next_week_birthdays
+from utils.get_next_week_birthdays import get_next_birthdays
 from utils.print_results import print_results
 
 class AddressBook(UserDict):
@@ -24,9 +24,8 @@ class AddressBook(UserDict):
             del self.data[name]
 
     def get_birthdays_per_week(self, days):
-        birthdays_per_week = defaultdict(list)
-        return get_next_week_birthdays(self.data, birthdays_per_week, days)
-    
+        return get_next_birthdays(self.data, days)
+
     def save(self):
         with open(AddressBook.data_file_name, 'wb') as fn:
             pickle.dump(self, fn)

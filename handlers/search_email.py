@@ -21,4 +21,4 @@ def search_email(args, contacts: AddressBook):
     if result != '':
         return result.removesuffix('\n')
     else:
-        raise NotFoundError('email')
+        raise NotFoundError

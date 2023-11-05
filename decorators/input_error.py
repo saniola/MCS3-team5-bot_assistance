@@ -1,6 +1,7 @@
 from customErrors.doubleKeyError import DoubleKeyError
 from customErrors.notFoundError import NotFoundError
 from customErrors.valueLengthError import ValueLengthError
+from customErrors.rangeDayError import ValueRangeDayError
 
 
 def input_error(func):
@@ -99,5 +100,7 @@ def input_error(func):
             return "Error: " + e.message
         except DoubleKeyError as e:
             return "Error: " + e.message
+        except ValueRangeDayError as e:
+            return f"Error: {e}"
 
     return inner
