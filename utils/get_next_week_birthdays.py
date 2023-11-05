@@ -39,8 +39,8 @@ def print_birdays(birdayes: UserDict):
     res = ''
     for k, val in sorted(birdayes.data.items()):
         if k == 1:
-            res += f"Birthay in {k+1} day: {val}\n"
+            res += f"Birthday in {k+1} day: {val}\n"
         else:
-            res += f"Birthay in {k+1} days: {val}\n"
+            res += f"Birthday in {k+1} days: {val}\n"
 
     return res.strip('\n')
